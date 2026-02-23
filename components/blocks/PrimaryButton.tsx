@@ -2,6 +2,7 @@ import { navigate } from '@/store/screenSlice';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { useDispatch } from 'react-redux';
+import { DynamicIcon } from './DynamicIcon';
 
 export const PrimaryButton = ({ block }: { block: any }) => {
     const dispatch = useDispatch();
@@ -16,10 +17,18 @@ export const PrimaryButton = ({ block }: { block: any }) => {
 
     return (
         <TouchableOpacity
-            style={[styles.button, isGold && styles.goldButton]}
+            style={[styles.button, isGold && styles.goldButton, styles.row]}
             onPress={handlePress}
             activeOpacity={0.8}
         >
+            {block.icon && (
+                <DynamicIcon
+                    name={block.icon}
+                    size={20}
+                    color={isGold ? '#111827' : '#FFFFFF'}
+                    style={{ marginRight: 10 }}
+                />
+            )}
             <Text style={[styles.text, isGold && styles.goldText]}>{block.label}</Text>
         </TouchableOpacity>
     );
@@ -40,6 +49,9 @@ const styles = StyleSheet.create({
     goldButton: {
         backgroundColor: '#FACC15',
         borderColor: '#EAB308',
+    },
+    row: {
+        flexDirection: 'row',
     },
     text: {
         color: '#FFFFFF',

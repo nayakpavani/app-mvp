@@ -51,9 +51,13 @@ const screenSlice = createSlice({
       state.currentState = 'portal';
       state.currentManifest = ContainerRegistry.portal.states.portal;
       state.history = [];
+    },
+    setScreenValue: (state, action) => {
+      const { key, value } = action.payload;
+      state.data[key] = value;
     }
   },
 });
 
-export const { navigate, goBack, resetToPortal } = screenSlice.actions;
+export const { navigate, goBack, resetToPortal, setScreenValue } = screenSlice.actions;
 export default screenSlice.reducer;

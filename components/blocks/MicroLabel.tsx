@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 
 export const MicroLabel = ({ block }: { block: any }) => {
-    const isGold = block.style === 'gold' || (typeof block.style === 'string' && block.style.includes('gold'));
+    const isGold = (typeof block.style === 'string' && block.style.includes('gold')) || block.style === 'gold';
 
     return (
         <Text style={[styles.text, isGold && styles.goldText, block.style]}>

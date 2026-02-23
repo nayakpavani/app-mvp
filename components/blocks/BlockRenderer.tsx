@@ -4,17 +4,32 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useSelector } from 'react-redux';
 
 // Use relative paths to ensure maximum compatibility with the current bundler config
+import { BaselineSlider } from './BaselineSlider';
+import { BreathAnimation } from './BreathAnimation';
 import { ChipList } from './ChipList';
 import { ChoiceCard } from './ChoiceCard';
 import { ChoiceGrid } from './ChoiceGrid';
+import { GraphBlock } from './GraphBlock';
 import { Headline } from './Headline';
+import { HelperText } from './HelperText';
+import { HoldButton } from './HoldButton';
+import { IdentityIndicator } from './IdentityIndicator';
+import { InsightBox } from './InsightBox';
 import { LotusLogo } from './LotusLogo';
+import { MantraDisplay } from './MantraDisplay';
 import { MicroLabel } from './MicroLabel';
+import { OptionPicker } from './OptionPicker';
+import { PracticeCard } from './PracticeCard';
 import { PrimaryButton } from './PrimaryButton';
+import { RepCounter } from './RepCounter';
+import { SankalpDisplay } from './SankalpDisplay';
 import { Spacer } from './Spacer';
 import { Subtext } from './Subtext';
+import { SummaryBlock } from './SummaryBlock';
+import { TextArea } from './TextArea';
+import { TimerDisplay } from './TimerDisplay';
 
-const BlockMap: Record<string, React.FC<any>> = {
+const getBlockMap = () => ({
     headline: Headline,
     subtext: Subtext,
     instruction_text: Subtext,
@@ -25,7 +40,22 @@ const BlockMap: Record<string, React.FC<any>> = {
     choice_grid: ChoiceGrid,
     spacer: Spacer,
     lotus_logo: LotusLogo,
-};
+    option_picker: OptionPicker,
+    textarea: TextArea,
+    breath_animation: BreathAnimation,
+    timer_display: TimerDisplay,
+    rep_counter: RepCounter,
+    identity_indicator: IdentityIndicator,
+    mantra_display: MantraDisplay,
+    sankalp_display: SankalpDisplay,
+    graph_block: GraphBlock,
+    practice_card: PracticeCard,
+    baseline_slider: BaselineSlider,
+    summary_block: SummaryBlock,
+    insight_box: InsightBox,
+    hold_button: HoldButton,
+    helper_text: HelperText,
+});
 
 const UnknownBlock = ({ type }: { type: string }) => (
     <View style={styles.unknown}>
@@ -50,6 +80,7 @@ export const BlockRenderer = ({ block }: { block: any }) => {
         })
     );
 
+    const BlockMap = getBlockMap() as Record<string, React.FC<any>>;
     const Component = BlockMap[interpolatedBlock.type];
 
     if (!Component) {

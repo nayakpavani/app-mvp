@@ -1,6 +1,6 @@
-import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { DynamicIcon } from './DynamicIcon';
 
 export const ChoiceGrid = ({ block }: { block: any }) => {
     return (
@@ -9,8 +9,7 @@ export const ChoiceGrid = ({ block }: { block: any }) => {
                 {block.options?.map((option: any) => (
                     <TouchableOpacity key={option.id} style={styles.item} activeOpacity={0.8}>
                         <View style={styles.iconContainer}>
-                            {/* We'll use a placeholder icon if the icon mapping isn't implementation yet */}
-                            <Ionicons name="flash-outline" size={24} color="#C9A84C" />
+                            <DynamicIcon name={option.icon || "fas fa-leaf"} size={24} color="#FACC15" />
                         </View>
                         <Text style={styles.itemTitle}>{option.title}</Text>
                     </TouchableOpacity>

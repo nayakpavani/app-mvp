@@ -2,6 +2,7 @@ import { navigate } from '@/store/screenSlice';
 import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useDispatch } from 'react-redux';
+import { DynamicIcon } from './DynamicIcon';
 
 export const ChoiceCard = ({ block }: { block: any }) => {
     const dispatch = useDispatch();
@@ -30,6 +31,11 @@ export const ChoiceCard = ({ block }: { block: any }) => {
                     onPress={() => handleSelect(option)}
                 >
                     <View style={styles.cardContent}>
+                        {option.icon && (
+                            <View style={styles.iconContainer}>
+                                <DynamicIcon name={option.icon} size={24} color="#FACC15" />
+                            </View>
+                        )}
                         <View style={styles.textContainer}>
                             <Text style={styles.title}>{option.title}</Text>
                             {option.description && (
@@ -71,6 +77,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
+    },
+    iconContainer: {
+        marginRight: 16,
     },
     textContainer: {
         flex: 1,

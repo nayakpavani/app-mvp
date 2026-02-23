@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, {
-    Easing,
     useAnimatedStyle,
     useSharedValue,
     withRepeat,
@@ -14,12 +13,12 @@ export const LotusLogo = ({ block }: { block: any }) => {
 
     useEffect(() => {
         scale.value = withRepeat(
-            withTiming(1.1, { duration: 3000, easing: Easing.bezier(0.4, 0, 0.2, 1) }),
+            withTiming(1.1, { duration: 3000 }),
             -1,
             true
         );
         opacity.value = withRepeat(
-            withTiming(1, { duration: 3000, easing: Easing.inOut(Easing.ease) }),
+            withTiming(1, { duration: 3000 }),
             -1,
             true
         );
